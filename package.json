@@ -1,0 +1,7 @@
+{
+    "name": "endproscalperv2-main",
+    "version": "1.1.0",
+    "scripts": {
+        "build": "node firebase-config.js"
+    }
+}

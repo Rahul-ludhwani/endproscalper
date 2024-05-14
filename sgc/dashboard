@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Admin Panel</h1>
+      <button v-if="user" @click="logout">Logout</button>
+    </header>
+    <main v-if="user">
+      <form @submit.prevent="addClient">
+        <input type="text" v-model="newClient.name" placeholder="Client Name" required>
+        <input type="text" v-model="newClient.mt4Account" placeholder="MT4 Account" required>
+        <button type="submit">Add Client</button>
+      </form>
+      <ul>
+        <li v-for="client in clients" :key="client.id">
+          <span>{{ client.name }}</span>
+          <span>{{ client.mt4Account }}</span>
+          <button @click="editClient(client)">Edit</button>
+          <button @click="deleteClient(client)">Delete</button>
+        </li>
+      </ul>
+    </main>
+    <footer v-else>
+      <button @click="login">Login with Google</button>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
